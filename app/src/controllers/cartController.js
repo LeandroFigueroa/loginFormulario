@@ -57,11 +57,8 @@ export const deleteAllProductsToCartController = async (req, res, next) =>{
     try {
         const cartId = req.session.cartId;
         const cartToDelete = await cartDao.deleteAllProductsToCart(cartId)
-        // if(!cartToDelete){
-        //     res.status(404).json('error: request failed')
-        // } else{
+
             res.json(`cart con el ID ${cartId} eliminado correctamente`)
-        // }
     } catch (error) {
         next(error)
     };
