@@ -36,7 +36,7 @@ export const createUserController = async (req, res, next) =>{
         const { email, password } = req.body
         const userData = req.body
         let create = null
-        if(email === 'adminCoder@coder.com' && password === 'adminCoder123'){
+        if(email === 'adminCoder@coder.com' && password === 'adminCod3r123'){
             userData.role = 'admin'
             create = await userDao.createUser(userData)
         } else {
