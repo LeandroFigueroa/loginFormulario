@@ -11,6 +11,13 @@ import cartsRouter from './routes/cartRouter.js'
 import session from 'express-session'
 import usersRouter from './routes/userRouter.js'
 import views from './routes/viewsRouter.js'
+import { errorHandler } from './middlewares/errorHandler.js';
+import passport from 'passport';
+import './passport/github.js';
+import './passport/local.js';
+import { ensureAuthenticated } from './middlewares/ensureAuthenticated.js'
+
+
 
 const app = express();
 const port = 8080;
@@ -44,8 +51,7 @@ app.use(session({
     store : new MongoStore({
         mongoUrl: 'mongodb+srv://admin:Kyuba2389@backend.bi0kmfo.mongodb.net/?retryWrites=true&w=majority',
         ttl: 60,
-        autoRemove:'interval',
-        autoRemoveInterval: 10,
+
     })
 })
 );
@@ -54,6 +60,9 @@ app.use('/products', productsRouter)
 app.use('/carts',  cartsRouter)
 app.use('/user', usersRouter)
 app.use('/views', views)
+app.use(errorHandler)
+app.use(passport.initialize());
+app.use(passport.session());
 
 const httpServer = app.listen(port, ()=>{
     console.log(':) server ok en port', port)

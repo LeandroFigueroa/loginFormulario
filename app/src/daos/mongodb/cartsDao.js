@@ -7,6 +7,7 @@ export default class CartsDaoMongoDB {
         return response;
         } catch (error) {
         console.log(error);
+        throw new Error(error);
         };
     };
     async getCart(id) {
@@ -15,6 +16,7 @@ export default class CartsDaoMongoDB {
             return response;
         } catch (error) {
             console.log(error);
+            throw new Error(error);
         };
     };
     async addProductToCart(prodId, cartId){
@@ -37,7 +39,8 @@ export default class CartsDaoMongoDB {
             const cartUpdate = await CartsModel.findById(cartId).populate('products._id');
             return cartUpdate
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            throw new Error(error);
         };
     };
     async deleteProductToCart (prodId, cartId){
@@ -63,7 +66,8 @@ export default class CartsDaoMongoDB {
             const cartUpdate = await CartsModel.findById(cartId).populate('products._id')
             return cartUpdate
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            throw new Error(error);
         };
     };
     async deleteAllProductsToCart (cartId) {
@@ -78,7 +82,8 @@ export default class CartsDaoMongoDB {
                 );
             };
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            throw new Error(error);
         };
     };
     async updateQuantityOfProduct (cartId, prodId, newQuantity) {
@@ -104,7 +109,8 @@ export default class CartsDaoMongoDB {
             const cartUpdate = await CartsModel.findById(cartId).populate('products._id')
             return cartUpdate
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            throw new Error(error);
         };
     };
 };

@@ -6,7 +6,9 @@ const UserSchema = new mongoose.Schema({
     email: {type: String, required:true, unique: true},
     age: {type: Number, required:true},
     password: {type:String, required:true, index:true},
-    role: {type:String, default:'user'}
+    role: {type:String, default:'user'},
+    isGithub: {type:Boolean, default: false},
+    cartId: {type:String, require:true}
 });
 
 export const UserModel = mongoose.model(

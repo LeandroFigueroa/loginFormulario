@@ -15,6 +15,7 @@ export default class ProductsDaoMongoDB {
         return response;
         } catch (error) {
         console.log(error);
+        throw new Error(error);
         };
     };
     async getProductById(id) {
@@ -23,6 +24,7 @@ export default class ProductsDaoMongoDB {
         return response;
         } catch (error) {
         console.log(error);
+        throw new Error(error);
         };
     };
     async createProduct(obj) {
@@ -31,6 +33,7 @@ export default class ProductsDaoMongoDB {
         return response;
         } catch (error) {
         console.log(error);
+        throw new Error(error);
         };
     };
     async updateProduct(id, obj) {
@@ -38,7 +41,7 @@ export default class ProductsDaoMongoDB {
         await ProductsModel.updateOne({_id: id}, obj);
         return obj;
         } catch (error) {
-        console.log(error);
+            throw new Error(error);
         };
     };
     async deleteProduct(id) {
@@ -47,6 +50,7 @@ export default class ProductsDaoMongoDB {
         return response;
         } catch (error) {
         console.log(error);
+        throw new Error(error);
         };
     };
     async getProductBySomething(key, value){
@@ -57,6 +61,8 @@ export default class ProductsDaoMongoDB {
             return response
         } catch (error) {
             console.log(error)
+            throw new Error(error);
+
         };
     };
 };

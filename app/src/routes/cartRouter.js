@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-    getCartController,
     createCartController,
     addProductToCartController,
     deleteProductToCartController,
@@ -8,9 +7,10 @@ import {
     deleteAllProductsToCartController
 } from '../controllers/cartController.js';
 
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js'
+
 const router = Router();
 
-router.get('/', getCartController);
 router.post('/', createCartController);
 router.put('/:prodId', addProductToCartController);
 router.put('/quantity/:prodId', updateQuantityOfProductController);
